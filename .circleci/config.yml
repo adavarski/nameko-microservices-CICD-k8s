@@ -30,6 +30,8 @@ jobs:
          command: make docker-login
 
       - run:
-         name: Build Docker image
-         command: TAG=latest make push-images
+         name: Build Dock      
+         commands:
+           - cd gateway
+           - TAG=latest make push-images
          
