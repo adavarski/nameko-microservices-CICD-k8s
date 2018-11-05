@@ -31,7 +31,5 @@ jobs:
 
       - run:
          name: Build Dock      
-         commands:
-           - cd gateway
-           - TAG=latest make push-images
+         command: cd gateway && TAG=latest make push-images
          
