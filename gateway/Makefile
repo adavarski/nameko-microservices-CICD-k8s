@@ -6,5 +6,5 @@ TAG ?= dev
 build-image:
 	docker build -t davarski/nameko-example-gateway-circleci:$(TAG) .;
 
-push-image:
+push-image: build-image
 	docker push davarski/nameko-example-gateway-circleci:$(TAG)
