@@ -17,7 +17,7 @@ spec:
         app: {{ .Chart.Name }}
     spec:
       containers:
-      - image: davarski/nameko-example-gateway:{{ .Values.image.tag }}
+      - image: davarski/nameko-example-gateway-circleci:{{ .Values.image.tag }}
         name: {{ .Chart.Name }}
         env:
           - name: RABBIT_HOST

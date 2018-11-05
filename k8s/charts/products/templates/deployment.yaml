@@ -17,7 +17,7 @@ spec:
         app: {{ .Chart.Name }}
     spec:
       containers:
-      - image: davarski/nameko-example-products:{{ .Values.image.tag }}
+      - image: davarski/nameko-example-products-circleci:{{ .Values.image.tag }}
         name: {{ .Chart.Name }}
         env:
           - name: REDIS_HOST
