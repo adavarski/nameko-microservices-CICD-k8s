@@ -4,7 +4,7 @@ TAG ?= dev
 
 
 build-image:
-	docker build -t davarski/nameko-example-gateway-circleci:$(TAG) -f docker.run .;
+	docker build -t davarski/nameko-example-gateway-circleci:$(TAG) .;
 
 push-image:
 	docker push davarski/nameko-example-gateway-circleci:$(TAG)
