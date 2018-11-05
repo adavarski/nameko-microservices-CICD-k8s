@@ -24,7 +24,7 @@ build:
         for image in $(IMAGES) ; do make -C $$image build-image; done
 
 docker-login:
-	@docker login --password=${DOCKER_PASSWORD} --username=${DOCKER_USERNAME}
+	docker login --password=${DOCKER_PASSWORD} --username=${DOCKER_USERNAME}
 
 push-images: build
 	for image in $(IMAGES) ; do make -C $$image push-image; done
