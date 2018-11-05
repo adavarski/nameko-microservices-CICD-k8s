@@ -3,5 +3,4 @@
 *.pyc
 htmlcov
 .coverage
-*/wheelhouse
 *.sql
