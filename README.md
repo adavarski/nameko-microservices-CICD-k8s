@@ -1,7 +1,4 @@
 # Nameko Examples
-![Airship Ltd](airship.png)
-## Airship Ltd
-Buying and selling quality airships since 2012
 
 [![CircleCI](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci/tree/master.svg?style=svg)](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci)
 
