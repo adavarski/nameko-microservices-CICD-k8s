@@ -13,6 +13,12 @@ RUN pip install virtualenv
 RUN virtualenv -p python3 /appenv
 RUN . /appenv/bin/activate; pip install -U pip; pip install wheel
 
+ENV WHEELHOUSE=/wheelhouse
+ENV PIP_WHEEL_DIR=/wheelhouse
+ENV PIP_FIND_LINKS=/wheelhous
+
+RUN pip wheel .
+
 ADD wheelhouse /var/nameko/wheelhouse
 
 COPY config.yml /var/nameko/config.yml
