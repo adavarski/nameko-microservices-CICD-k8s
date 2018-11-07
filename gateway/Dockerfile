@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 ENV WHEELHOUSE=./wheelhouse
 ENV PIP_WHEEL_DIR=./wheelhouse
-ENV PIP_FIND_LINKS=./wheelhous
+ENV PIP_FIND_LINKS=./wheelhouse
 
 RUN pip install virtualenv
 
