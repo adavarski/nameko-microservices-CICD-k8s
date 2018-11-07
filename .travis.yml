@@ -1,0 +1,12 @@
+sudo: true
+dist: trusty
+env:
+  # $DOCKER_USER, $DOCKER_PASS should be set beforehand
+  
+script:
+# login 
+- make docker-login
+  
+script:
+# the only line for building the image
+- TAG=latest make push-images
