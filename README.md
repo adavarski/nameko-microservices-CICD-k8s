@@ -1,6 +1,6 @@
 # Nameko Examples
 
-[![CircleCI](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci/tree/master.svg?style=svg)](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci)
+[![CircleCI](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci-travisci/tree/master.svg?style=svg)](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci-travisci)
 
 ## Prerequisites
 
