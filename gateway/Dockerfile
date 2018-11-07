@@ -8,16 +8,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ENV WHEELHOUSE=./wheelhouse
+ENV PIP_WHEEL_DIR=./wheelhouse
+ENV PIP_FIND_LINKS=./wheelhous
+
 RUN pip install virtualenv
 
 RUN virtualenv -p python3 /appenv
-RUN . /appenv/bin/activate; pip install -U pip; pip install wheel
-
-ENV WHEELHOUSE=/wheelhouse
-ENV PIP_WHEEL_DIR=/wheelhouse
-ENV PIP_FIND_LINKS=/wheelhous
-
-RUN pip wheel .
+RUN . /appenv/bin/activate; pip install -U pip; pip install wheel; pip wheel .
 
 ADD wheelhouse /var/nameko/wheelhouse
 
