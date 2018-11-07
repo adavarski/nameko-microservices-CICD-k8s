@@ -8,12 +8,13 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ADD . /tmp/wheel_build
+
 RUN pip install virtualenv
 
+RUN pip install virtualenv
 RUN virtualenv -p python3 /appenv
-RUN . /appenv/bin/activate; pip install -U pip; pip install wheel
-
-ADD wheelhouse /var/nameko/wheelhouse
+RUN . /appenv/bin/activate; pip install -U pip; pip install wheel; cd /tmp/wheel_build; pip wheel -w /tmp/wheel_build/wheelhouse .; mkdir -p /var/nameko/wheelhouse; cp /tmp/wheel_build/wheelhouse/* /var/nameko/wheelhouse; rm -rf /tmp/wheel_build
 
 COPY config.yml /var/nameko/config.yml
 COPY run.sh /var/nameko/run.sh
