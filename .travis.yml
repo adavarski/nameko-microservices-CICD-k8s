@@ -1,7 +1,7 @@
 sudo: true
 dist: trusty
 env:
-  # $DOCKER_USER, $DOCKER_PASS should be set beforehand
+  # $DOCKER_USERNAME, $DOCKER_PASSWORD should be set beforehand
 
 script:
 # the only line for building the image
