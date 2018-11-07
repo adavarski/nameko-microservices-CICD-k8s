@@ -4,4 +4,3 @@
 htmlcov
 .coverage
 *.sql
-*/wheelhouse
