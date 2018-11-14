@@ -9,5 +9,7 @@ stages:
 build:
   stage: build
   script:
-    - make docker-login
+    - docker login --password=${DOCKER_PASSWORD} --username=${DOCKER_USERNAME}
+    - apk add --no-cache make
     - TAG=latest make push-images
+
