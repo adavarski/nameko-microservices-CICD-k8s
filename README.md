@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci-travisci/tree/master.svg?style=svg)](https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci-travisci)
 
+https://gitlab.com/adavarski/nameko-microservices-examples-circleci-travisci/pipelines
+
 ## Prerequisites
 
 * [Python 3](https://www.python.org/downloads/)
