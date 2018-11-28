@@ -216,7 +216,38 @@ CMD . /appenv/bin/activate; \
 
 ```
 
-### Deploy with Gitlab
+### Deploy with Gitlab.com and gitlab-runner @minikube
+
+```
+$ git init 
+$ git add .
+$ git commit -m "Init commit"
+$ git remote add origin https://gitlab.com/nameko-microservices-examples-gitlab.git
+$ git push origin master
+
+$ kubectl create -f gitlab-runner-deployment.yaml
+
+
+```
+
+```
+$ kubectl create clusterrolebinding default-sa-admin --user system:serviceaccount:default:default  --clusterrole cluster-admin
+
+$ ./get-sa-token.sh --namespace default --account default
+
+$ cat ca.crt | base64 > ca.crt.code
+
+
+Gitlab: Setup CI/CD for project env variables:
+
+CI_ENV_K8S_CA = cat ca.crt.code
+
+CI_ENV_K8S_MASTER = https://192.168.99.100:8443
+
+CI_ENV_K8S_SA_TOKEN = cat sa.token
+
+```
+
 ```
 Set up a specific Runner manually
 Install GitLab Runner
@@ -224,6 +255,9 @@ Specify the following URL during the Runner setup: https://gitlab.com/
 Use the following registration token during setup: -aRs3MMPqbP_HcxadMmg 
 Reset runners registration token
 Start the Runner!
+
+$ kubectl get pod |grep runner
+gitlab-runner-5d49c87d4f-d6rwj   1/1     Running   1          2d
 
 kubectl exec -it gitlab-runner-5d49c87d4f-d6rwj /bin/bashroot@gitlab-runner-5d49c87d4f-d6rwj:/#gitlab-runner register --non-interactive --url "https://gitlab.com/" --registration-token "-aRs3MMPqbP_HcxadMmg" --executor "docker" --docker-image alpine:3 --description "docker-runner" --tag-list "docker-nameko-examples" --run-untagged --locked="false"
 
