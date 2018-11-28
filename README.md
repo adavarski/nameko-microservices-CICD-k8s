@@ -221,18 +221,19 @@ CMD . /appenv/bin/activate; \
 ### Deploy with Gitlab.com and gitlab-runner @minikube
 
 ```
+
+Create new poject @gitlab.com
+
 $ git init 
 $ git add .
 $ git commit -m "Init commit"
 $ git remote add origin https://gitlab.com/nameko-microservices-examples-gitlab.git
 $ git push origin master
 
+```
+```
 $ kubectl create -f gitlab-runner-deployment.yaml
 
-
-```
-
-```
 $ kubectl create clusterrolebinding default-sa-admin --user system:serviceaccount:default:default  --clusterrole cluster-admin
 
 $ ./get-sa-token.sh --namespace default --account default
@@ -240,7 +241,11 @@ $ ./get-sa-token.sh --namespace default --account default
 $ cat ca.crt | base64 > ca.crt.code
 
 
-Gitlab: Setup CI/CD for project env variables:
+Gitlab: Setup CI/CD for nameko-microservices-examples-gitlab project env variables:
+
+DOCKER_PASSWORD = 
+
+DOCKER_USERNAME = 
 
 CI_ENV_K8S_CA = cat ca.crt.code
 
@@ -270,7 +275,7 @@ docker-runner
 
 docker-nameko-examples
 ```
-
+Setup pipeline : .gitlab-ci.yml 
 ```
 stages:
   - build
