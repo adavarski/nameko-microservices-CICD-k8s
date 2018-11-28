@@ -319,3 +319,8 @@ deploy_staging:
   only:
   - master
   ```
+```Clean deployment:
+
+ $ kubectl delete ns examples
+namespace "examples" deleted
+```
