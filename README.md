@@ -215,3 +215,73 @@ CMD . /appenv/bin/activate; \
     /var/nameko/run.sh;
 
 ```
+
+### Deploy with Gitlab
+```
+Set up a specific Runner manually
+Install GitLab Runner
+Specify the following URL during the Runner setup: https://gitlab.com/ 
+Use the following registration token during setup: -aRs3MMPqbP_HcxadMmg 
+Reset runners registration token
+Start the Runner!
+
+kubectl exec -it gitlab-runner-5d49c87d4f-d6rwj /bin/bashroot@gitlab-runner-5d49c87d4f-d6rwj:/#gitlab-runner register --non-interactive --url "https://gitlab.com/" --registration-token "-aRs3MMPqbP_HcxadMmg" --executor "docker" --docker-image alpine:3 --description "docker-runner" --tag-list "docker-nameko-examples" --run-untagged --locked="false"
+
+Runners activated for this project
+ 5c35da8d Pause Remove Runner
+#567115
+docker-runner
+
+docker-nameko-examples
+```
+
+```
+stages:
+  - build
+  - deploy
+
+variables:
+
+  CA: /etc/deploy/ca.crt
+
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+  - docker:dind
+  
+  script:
+    - docker login --password=${DOCKER_PASSWORD} --username=${DOCKER_USERNAME}
+    - apk add --no-cache make
+    - TAG=latest make push-images
+
+deploy_staging:
+  tags:
+  - docker-nameko-examples 
+  stage: deploy
+  image: davarski/k8s-helm:latest
+  before_script:
+    - apk add --no-cache make
+    - mkdir -p /etc/deploy
+    - echo ${CI_ENV_K8S_CA}|base64 -d > ${CA}
+    - kubectl config set-cluster minikube --server=${CI_ENV_K8S_MASTER} --certificate-authority=/etc/deploy/ca.crt --embed-certs=true
+    - kubectl config set-credentials default --token=${CI_ENV_K8S_SA_TOKEN}
+    - kubectl config set-context minikube --cluster=minikube --user=default
+    - kubectl config use-context minikube
+    - helm init --client-only
+
+  script:
+    - helm install --name broker  --namespace examples stable/rabbitmq
+    - helm install --name db --namespace examples stable/postgresql --set postgresDatabase=orders
+    - helm install --name cache  --namespace examples stable/redis
+    - cd k8s
+    - NAMEPSACE=examples make deploy-namespace
+    - NAMEPSACE=examples make install-gateway
+    - NAMEPSACE=examples make install-orders
+    - NAMEPSACE=examples make install-products 
+  environment:
+    name: staging
+  only:
+  - master
+  ```
