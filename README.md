@@ -326,8 +326,23 @@ deploy_staging:
   only:
   - master
   ```
-```Clean deployment:
+```
+
+Clean deployment:
 
  $ kubectl delete ns examples
 namespace "examples" deleted
+$ helm del --purge broker
+release "broker" deleted
+$ helm del --purge cache
+release "cache" deleted
+$ helm del --purge db
+release "db" deleted
+$ helm del --purge gateway
+release "gateway" deleted
+$ helm del --purge orders
+release "orders" deleted
+$ helm del --purge products
+release "products" deleted
+
 ```
