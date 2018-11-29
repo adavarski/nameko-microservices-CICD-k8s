@@ -1,10 +1,10 @@
 # Nameko Examples
 
-https://gitlab.com/adavarski/nameko-microservices-examples-circleci-travisci
+Gitlab: https://gitlab.com/adavarski/nameko-microservices-examples-circleci-travisci
 
-https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci-travisci)
+CircleCI: https://circleci.com/gh/adavarski/nameko-microservices-examples-circleci-travisci
 
-https://gitlab.com/adavarski/nameko-microservices-examples-circleci-travisci/pipelines
+TravisCI: https://travis-ci.org/adavarski/nameko-microservices-examples-circleci-travisci-gitlab
 
 ## Prerequisites
 
